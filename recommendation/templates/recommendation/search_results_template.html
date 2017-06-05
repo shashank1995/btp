@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+  nav .input-field{
+    width: 700px;
+  }
+    body {
+      background-color: #eee;
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    main {
+    flex: 1 0 auto;
+  }
+  @font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v22/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+.verticalLine {
+  border-left: thick solid #34729e;
+}
+  </style>
+</head>
+<body>
+
+<div class="row" style="margin-top: 30px;">
+<nav>
+    <form action="/recommendation/" method="post">
+    {%  csrf_token %}
+    <div class="nav-wrapper">
+      <form>
+        <div class="input-field">
+          <input id="search_query" type="search" name="search_query" >
+          <label class="label-icon" for="search_query"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+    </form>
+  </nav>
+  </div>
+
+ <div class="row">
+      
+      
+      <div class="col s4">
+        <h3>Related search terms</h3>
+        {% for a in list2 %}
+          <a href="/recommendation/{{a.title}}">{{a.title}}</a><br>
+        {% endfor %}
+      </div>
+      <div class="col s8 verticalLine">
+        <h3>Search Results</h3>
+        {% for a in list5 %}
+        <div style="font-size: 25px;">{{a.name}}</div>
+        <div style="font-size: 13px;">{{a.snippet}}</div>
+        <a href='{{a.displayUrl}}'>{{a.displayUrl}}</a>
+        <br>
+        {% endfor %}
+      </div>
+
+    </div>
+
+<footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Under the guidance of:</h5>
+                <h4 class="grey-text text-lighten-4">Dr. Pinaki Chakraborty</h4>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Project Team:</h5>
+                <ul class="white-text">
+                <li><font size="4">Shashank Singh (362/CO/13)</font></li>
+                  <li><font size="4">Vishnu Poddar (394/CO/13)</font></li>
+                  <li><font size="4">Rohit Raj (349/CO/13)</font></li>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            Netaji Subhas Institute of Technology
+            <div class="right">B.Tech Project</div>
+            </div>
+          </div>
+        </footer>
+
+</body>
+</html>
